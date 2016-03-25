@@ -23,7 +23,7 @@ class Articles
         require MODELS . "Articles_model.php";
         require MODELS . "Comments_model.php";
         $this->all_articles = new Articles_model();
-        $this->all_comments = new Comments_model();
+
         $this->defaultPageNumber();
     }
 
@@ -46,10 +46,17 @@ class Articles
         echo json_encode($articol);
     }
     function getCommentsForArticleJson() {
+        $this->all_comments = new Comments_model();
         header('Content-Type: application/json');
         $comments = $this->all_comments->getComments($_GET['articleIdComments']);
         echo json_encode($comments);
 
+    }
+    function addComment() {
+        $this->all_comments = new Comments_model();
+        header('Content-Type: application/json');
+        $comment = $this->all_comments->addComment($_POST);
+        echo json_encode(array("id"=>$comment));
     }
 
     function defaultPageNumber()

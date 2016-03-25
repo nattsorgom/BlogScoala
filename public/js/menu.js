@@ -8,10 +8,10 @@ $( document ).ready(function() {
 
     function addMenuAnimation() {
         $('.menu a').mouseover(function () {
-            $(this).animate({fontSize: '27px'}, 'fast')
+            $(this).animate({fontSize: '28px',marginRight:'6px'}, 'fast')
         });
         $('.menu a').mouseout(function () {
-            $(this).animate({fontSize: '25px'}, 'fast')
+            $(this).animate({fontSize: '25px',marginRight:'10px'}, 'fast')
         });
     }
 
@@ -29,7 +29,7 @@ $( document ).ready(function() {
             $.ajax({
                 url: 'http://localhost/blog_scoala/Articles/getOneArticleJson/?articleId=' + $(this).data('articleid'),
                 success: function (oneArticle) {
-                    $('.articole').slideUp(1000, function () {
+                    $('.articole').slideUp(250, function () {
                         $articole.html('');
                         $articole.append('<div class="one-article"><h2>' +
                             oneArticle[0].title + '</h2><br><img src = "' +
@@ -37,14 +37,32 @@ $( document ).ready(function() {
                             oneArticle[0].body + '</p><br>' +
                             oneArticle[0].creation_date + ' in     <button>' +
                             oneArticle[0].category + '</button></div><hr>' +
-                            '<div class="comment-form">' +
+                            '<form class="comment-form">' +
                             '<p>Email   :</p><input type="text"><br>' +
                             '<p>Comment :</p><textarea></textarea><br>' +
-                            '<button>Add a Comment</button></div><hr>' +
+                            '<button class="add-comment">Add a Comment</button></form><hr>' +
                             '<div class="comments"><div>');
                         //console.log(oneArticle[0].id);
                         getComments(oneArticle[0].id);
-                        $('.articole').slideDown(1000);
+                        $('.articole').slideDown(250,function(){
+                            $('.add-comment').click(function() {
+                                var $comment = $('.commentForm')
+                                alert('click !');
+                                $.ajax({
+                                    url: "http://localhost/blog_scoala/Articles/addComment",
+                                    data: {
+                                            article_id:oneArticle[0].id,
+                                            body:$comment.val(),
+                                            email:$comment.val()
+                                        },
+                                    method: 'POST',
+                                    success: function (com) {
+                                        alert(com);
+                                    }
+                                });
+                            });
+
+                        });
                     });
                 }
             });

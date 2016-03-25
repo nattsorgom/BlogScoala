@@ -50,7 +50,7 @@ class Articles_model extends DB{
 
     function addArticle ($category,$title,$body,$img) {
         $this->executeQuery("INSERT INTO articles (category,title, body, img)
-        VALUES ('$category',''$title','$body','$img');");
+        VALUES ('".$category."','".$title."','".$body."','".$img."');");
     }
 
     function updateArticle() {

@@ -11,10 +11,9 @@ class Comments_model extends DB{
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    function addComment ($comment) {
-        $this->executeQuery("INSERT INTO comments (article_id, email, body)
-        VALUES ('".$comment["article_id"]."','".$comment["email"]."','".$comment["body"]."');");
-
+    function addComment($comment) {
+        $this->executeQuery("INSERT into comments (article_id, email, body) values ('".$comment["article_id"]."', '".$comment["email"]."', '".$comment["body"]."');");
+        return $this->db->lastInsertId();
     }
     function getComments($id){
         $count = count($this->executeQuery("SELECT * FROM comments WHERE article_id='{$id}'"));
