@@ -12,6 +12,7 @@ class Gallery {
     public $current_page;
     public $page_view = VIEWS.'gallery_view.php';
     public $title = 'Gallery';
+    public $error_message = 'Please Log In or Sign Up !';
 
     function __construct() {
         //echo "controllerul de Gallery";

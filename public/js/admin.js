@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 04.03.2016.
  */
-console.log('first js');
+console.log('admin javascript');
 $( document ).ready(function() {
     function getArticles() {
         $.ajax({

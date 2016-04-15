@@ -8,6 +8,7 @@
 
 class Articles
 {
+    public $js_file = "menu.js";
     public $all_articles;
     public $current_page;
     public $page_number;
@@ -15,7 +16,7 @@ class Articles
     public $all_comments;
     public $page_view = VIEWS.'articles_view.php';
     public $title = 'Articles';
-    public
+    public $error_message = 'Please Log In or Sign Up !';
 
     function __construct()
     {

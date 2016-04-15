@@ -6,8 +6,10 @@
  * Time: 19:56
  */
 class Home {
+    public $js_file = "home.js";
     public $page_view = VIEWS.'home_view.php';
     public $title = 'Home';
+    public $error_message = 'Please Log In or Sign Up !';
 
     function __construct() {
         //echo "Controlleru de Home <br>";

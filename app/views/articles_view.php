@@ -1,6 +1,9 @@
 
-
-
+<div class="btn-group">
+    <button class="btn btn-primary">Above</button>
+    <button class="btn btn-primary">Below</button>
+    <button class="btn btn-primary">People</button>
+</div>
 <div class='articole'>
 <?php
 $articles = $this->current_page;

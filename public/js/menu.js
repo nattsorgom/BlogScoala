@@ -1,19 +1,13 @@
 /**
  * Created by Administrator on 21.03.2016.
  */
+console.log("articles javascript");
 $( document ).ready(function() {
     var $articole = $('.articole');
     var $paginare = $('.paginare');
 
 
-    function addMenuAnimation() {
-        $('.menu a').mouseover(function () {
-            $(this).animate({fontSize: '28px',marginRight:'6px'}, 'fast')
-        });
-        $('.menu a').mouseout(function () {
-            $(this).animate({fontSize: '25px',marginRight:'10px'}, 'fast')
-        });
-    }
+
 
     function addArticlesAnimation() {
         $('.text-link').mouseover(function () {
@@ -38,22 +32,21 @@ $( document ).ready(function() {
                             oneArticle[0].creation_date + ' in     <button>' +
                             oneArticle[0].category + '</button></div><hr>' +
                             '<form class="comment-form">' +
-                            '<p>Email   :</p><input type="text"><br>' +
-                            '<p>Comment :</p><textarea></textarea><br>' +
+                            '<p>Email   :</p><input type="text" name="email"><br>' +
+                            '<p>Comment :</p><textarea name="body"></textarea><br>' +
                             '<button class="add-comment">Add a Comment</button></form><hr>' +
                             '<div class="comments"><div>');
                         //console.log(oneArticle[0].id);
                         getComments(oneArticle[0].id);
                         $('.articole').slideDown(250,function(){
                             $('.add-comment').click(function() {
-                                var $comment = $('.commentForm')
-                                alert('click !');
+                                console.log($('input[name=email]').val());
                                 $.ajax({
                                     url: "http://localhost/blog_scoala/Articles/addComment",
                                     data: {
                                             article_id:oneArticle[0].id,
-                                            body:$comment.val(),
-                                            email:$comment.val()
+                                            body:$('textarea[name=body]').val(),
+                                            email:$('input[name=email]').val()
                                         },
                                     method: 'POST',
                                     success: function (com) {
@@ -77,14 +70,14 @@ $( document ).ready(function() {
                 $.each(comments, function (j, comment) {
                     $comments = $('.comments');
                     $comments.append ('<i><p>' + comment.body +
-                        '</p></i><br>' + comment.creation_date +
-                        '<p>' + comment.email + '</p><hr>');
+                        '</p></i><p>' + comment.creation_date +
+                        '</p> added by  : ' + comment.email + '<hr>');
                 });
             }
         });
     }
 
-    addMenuAnimation();
+
     addArticlesAnimation();
     getOneArticle();
 
