@@ -11,16 +11,17 @@ class Admin
     public $all_users;
     public $articles;
     public $title =  'Admin';
-    public $page_view = VIEWS.'admin_view.php';
+    public $page_view;
     public $error_message = 'Please Log In or Sign Up !';
 
     function __construct()
     {
-            require MODELS . "DB_model.php";
-            require MODELS . "Admin_model.php";
-            require MODELS . "Articles_model.php";
-            $this->all_users = new Admin_model();
-            $this->articles = new Articles_model();
+        $this->page_view = VIEWS.'admin_view.php';
+        require MODELS . "DB_model.php";
+        require MODELS . "Admin_model.php";
+        require MODELS . "Articles_model.php";
+        $this->all_users = new Admin_model();
+        $this->articles = new Articles_model();
     }
 
     function index()

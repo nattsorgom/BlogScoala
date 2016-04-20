@@ -14,12 +14,13 @@ class Articles
     public $page_number;
     public $total_pages;
     public $all_comments;
-    public $page_view = VIEWS.'articles_view.php';
+    public $page_view;
     public $title = 'Articles';
     public $error_message = 'Please Log In or Sign Up !';
 
     function __construct()
     {
+        $this->page_view = VIEWS.'articles_view.php';
         require MODELS . "DB_model.php";
         require MODELS . "Articles_model.php";
         require MODELS . "Comments_model.php";

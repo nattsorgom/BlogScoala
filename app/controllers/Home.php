@@ -7,12 +7,13 @@
  */
 class Home {
     public $js_file = "home.js";
-    public $page_view = VIEWS.'home_view.php';
+    public $page_view ;
     public $title = 'Home';
     public $error_message = 'Please Log In or Sign Up !';
 
     function __construct() {
         //echo "Controlleru de Home <br>";
+        $this->page_view = VIEWS . 'home_view.php';
     }
     function index() {
         //echo "functia de index de la home";

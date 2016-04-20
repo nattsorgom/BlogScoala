@@ -10,12 +10,13 @@ class Gallery {
     public $page_number;
     public $total_pages;
     public $current_page;
-    public $page_view = VIEWS.'gallery_view.php';
+    public $page_view ;
     public $title = 'Gallery';
     public $error_message = 'Please Log In or Sign Up !';
 
     function __construct() {
         //echo "controllerul de Gallery";
+        $this->page_view = VIEWS.'gallery_view.php';
         require MODELS . "DB_model.php";
         require  MODELS . "Articles_model.php";
         $this->all_img = new Articles_model();

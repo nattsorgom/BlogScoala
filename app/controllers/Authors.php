@@ -6,10 +6,13 @@
  * Time: 22:28
  */
 class Authors {
-    public $page_view = VIEWS.'authors_view.php';
+    public $page_view;
     public $title = 'Authors';
     public $error_message = 'Please Log In or Sign Up !';
 
+    function __construct(){
+        $this->page_view = VIEWS.'authors_view.php';
+    }
     function index() {
         //echo "authors index method";
         include VIEWS . "layout.php";
