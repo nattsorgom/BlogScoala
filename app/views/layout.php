@@ -40,7 +40,7 @@
 
             <div class="col-sm-3 sidenav">
                 <div class="second-body">
-                    <?php require 'app/views/right_panel_view.php';?>
+
                 </div>
             </div>
         </div>

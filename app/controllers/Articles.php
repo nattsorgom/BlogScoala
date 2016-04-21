@@ -8,7 +8,7 @@
 
 class Articles
 {
-    public $js_file = "menu.js";
+    public $js_file = "articles.js";
     public $all_articles;
     public $current_page;
     public $page_number;

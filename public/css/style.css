@@ -31,6 +31,7 @@ body {
     background-color:black;
 }
 .main-body {
+    margin-top:10px;
     text-align:center;
     padding:10px;
     background-color: white;
@@ -38,7 +39,6 @@ body {
 }
 .second-body {
     text-align:center;
-    background-color:darksalmon;
     border-radius:15px;
     padding:10px;
 }
@@ -88,10 +88,14 @@ body {
     margin:30px;
     text-align:center;
 }
+.comment-form textarea {
+    width:300px;
+}
 .login-form {
+    min-width:300px;
     text-align:center;
     padding: 20px;
-    margin: 20px;
+    margin:0;
 }
 .btn {
     background-color:black;
@@ -114,4 +118,19 @@ footer {
     margin:20px;
     text-align:center;
     padding:20px;
+}
+.admin-button {
+    cursor:pointer;
+}
+.add-comment {
+    padding:10px;
+    cursor:pointer;
+    border-radius:10px;
+    background-color:wheat;
+}
+.add-another-comment {
+    padding:10px;
+    cursor:pointer;
+    border-radius:10px;
+    background-color:wheat;
 }
