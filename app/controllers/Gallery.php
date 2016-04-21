@@ -6,6 +6,7 @@
  * Time: 15:09
  */
 class Gallery {
+    public $js_file = 'gallery.js';
     public $all_img;
     public $page_number;
     public $total_pages;

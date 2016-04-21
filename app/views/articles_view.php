@@ -1,8 +1,10 @@
 
 <div class="btn-group">
-    <button class="btn btn-primary">Above</button>
-    <button class="btn btn-primary">Below</button>
-    <button class="btn btn-primary">People</button>
+    <ul class="nav nav-pills nav-justified">
+        <li><a >Above</a></li>
+        <li><a >Below</a></li>
+        <li><a >People</a></li>
+    </ul>
 </div>
 <div class='articole'>
 <?php

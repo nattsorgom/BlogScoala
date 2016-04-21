@@ -97,16 +97,8 @@ body {
     padding: 20px;
     margin:0;
 }
-.btn {
-    background-color:black;
-    border:1px solid black;
-}
-.btn a {
-    text-decoration:none;
-    color:white;
-}
 .contact-form {
-    padding:20px;
+    padding:10px;
     margin:0px auto;
     max-width:400px;
 }

@@ -25,36 +25,52 @@ $( document ).ready(function() {
                 success: function (oneArticle) {
                     $('.articole').slideUp(250, function () {
                         $articole.html('');
+                        commentFormHtml = '<div class="comment-form">' +
+                            '<p>Email   :</p><input type="text" name="email"><br>' +
+                            '<p>Comment :</p><textarea name="body"></textarea><br>' +
+                            '<p class="add-comment" >Add a Comment</p>'+
+                            '</div>';
                         $articole.append('<div class="one-article"><h2>' +
                             oneArticle[0].title + '</h2><br><img src = "' +
                             oneArticle[0].img + '"><p>' +
                             oneArticle[0].body + '</p><br>' +
                             oneArticle[0].creation_date + ' in     <button>' +
                             oneArticle[0].category + '</button></div><hr>' +
-                            '<form class="comment-form">' +
-                            '<p>Email   :</p><input type="text" name="email"><br>' +
-                            '<p>Comment :</p><textarea name="body"></textarea><br>' +
-                            '<button class="add-comment">Add a Comment</button></form><hr>' +
-                            '<div class="comments"><div>');
+                            commentFormHtml +
+                            '<div class="comments">'+
+                            '<div>');
                         //console.log(oneArticle[0].id);
                         getComments(oneArticle[0].id);
                         $('.articole').slideDown(250,function(){
-                            $('.add-comment').click(function() {
+                            function addComment() {
+                            $('.add-comment').click(function () {
                                 console.log($('input[name=email]').val());
-                                $.ajax({
-                                    url: "http://localhost/blog_scoala/Articles/addComment",
-                                    data: {
-                                            article_id:oneArticle[0].id,
-                                            body:$('textarea[name=body]').val(),
-                                            email:$('input[name=email]').val()
+                                    $.ajax({
+                                        url: "http://localhost/blog_scoala/Articles/addComment",
+                                        data: {
+                                            article_id: oneArticle[0].id,
+                                            body: $('textarea[name=body]').val(),
+                                            email: $('input[name=email]').val()
                                         },
-                                    method: 'POST',
-                                    success: function (com) {
-                                        alert(com);
-                                    }
+                                        method: 'POST',
+                                        success: function (com) {
+                                            console.log('success mnother fucker !');
+                                            var $commentForm = $('.comment-form');
+                                            $commentForm.html('');
+                                            $commentForm.html('<p>Comment Added Succesfully !</p>' +
+                                            '<p class="add-another-comment">Add Another Comment</p>');
+                                            $('.add-another-comment').click(function () {
+                                            $commentForm.html('');
+                                            $commentForm.html(commentFormHtml);
+                                            addComment();
+                                            });
+                                            $('.comments').html('');
+                                            getComments(oneArticle[0].id);
+                                        }
+                                    });
                                 });
-                            });
-
+                            }
+                            addComment();
                         });
                     });
                 }
@@ -82,7 +98,6 @@ $( document ).ready(function() {
     getOneArticle();
 
     $('.page-button').click('[data-pagenumber]', function() {
-
         $.ajax({
             url: 'http://localhost/blog_scoala/Articles/indexJson/?page_number=' + $(this).data('pagenumber'),
             success: function (current_page) {
@@ -97,16 +112,10 @@ $( document ).ready(function() {
                         articol.body.substring(125,0) + ' ... </p></div>'
                     );
                     console.log(articol.id);
-
                 });
                 addArticlesAnimation();
                 getOneArticle();
             }
         });
-
     });
-
-
-
-
 });

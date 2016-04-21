@@ -6,13 +6,15 @@
  * Time: 19:37
  */
 class Contact {
-    public $page_view = VIEWS.'contact_view.php';
+    public $js_file = 'contact.js';
+    public $page_view;
     public $title = 'Contact';
     public $contact_model;
     public $message = 'Contact us !';
     public $error_message = 'Please Log In or Sign Up !';
 
     function __construct() {
+        $this->page_view = VIEWS.'contact_view.php';
         require MODELS . "DB_model.php";
         require MODELS . "contact_model.php";
 

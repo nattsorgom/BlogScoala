@@ -6,6 +6,7 @@
  * Time: 22:28
  */
 class Authors {
+    public $js_file = 'authors.js';
     public $page_view;
     public $title = 'Authors';
     public $error_message = 'Please Log In or Sign Up !';
