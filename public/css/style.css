@@ -61,7 +61,7 @@ body {
     cursor:pointer;
     box-shadow:2px 1px 1px darkkhaki;
     width:200px;
-    height:100px;
+    height:150px;
     border-radius:5px;
     float:right;
 
@@ -114,15 +114,12 @@ footer {
 .admin-button {
     cursor:pointer;
 }
-.add-comment {
-    padding:10px;
+.my-buttons {
     cursor:pointer;
-    border-radius:10px;
     background-color:wheat;
+    padding:10px;
+    border-radius:10px;
 }
-.add-another-comment {
-    padding:10px;
-    cursor:pointer;
-    border-radius:10px;
-    background-color:wheat;
+#article-img {
+    width:100%;
 }

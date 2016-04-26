@@ -44,6 +44,27 @@ class Admin
         include VIEWS . "layout.php";
     }
 
+    function uploadFile() {
+        if (!$_SESSION['logat']) {
+            header('Location:/blog_scoala/Admin/index');
+        }
+        $target_dir = "public/img/".$_POST['pictureCategory']."/".$_POST['pictureId']."/";
+        mkdir($target_dir);
+        function getFileExtension($file){
+            $extensie = explode('.',$file);
+            $n = count($extensie);
+            $n = $n-1;
+            return $extensie[$n];
+        }
+        $extension = getFileExtension($_FILES['file']['name']);
+        move_uploaded_file($_FILES['file']['tmp_name'] , $target_dir . $_POST['pictureId'].".".$extension);
+        $pictureName = $_POST['pictureId'].".".$extension;
+        $this->articles->insertPicture($pictureName, $_POST['pictureId']);
+        header('Location:/blog_scoala/Articles');
+
+        //var_dump($_POST);
+        //var_dump($_FILES);
+    }
 
     function test_input($data)
     {

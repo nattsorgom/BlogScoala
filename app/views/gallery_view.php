@@ -7,7 +7,7 @@
  */
 
 echo "<h3>Gallery HTML</h3>";
-//echo "<img src='public/img/above1.jpg'>";
+//echo "<img src='public/img/40.jpg'>";
 $articles = $this->current_page;//$x
     for ($x=0; $x<count($articles); $x++) {
     echo "<div> ";

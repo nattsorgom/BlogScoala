@@ -53,8 +53,8 @@
                     <?php echo " * ".$_SESSION['user']." * "; ?><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="/blog_scoala/Admin">Admin Tools</li>
-                    <li><a href="/blog_scoala/Admin/logout">Log Out</li>
+                    <li><a href="/blog_scoala/Admin">Admin Tools</a></li>
+                    <li><a href="/blog_scoala/Admin/logout">Log Out</a></li>
                 </ul>
                 <?php } ?>
             </li>

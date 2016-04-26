@@ -10,7 +10,7 @@ class Articles_model extends DB{
     function getAll($page) {
         $page = $page - 1;
         $page = $page*3;
-        $statement = $this->executeQuery("SELECT * FROM articles  ORDER BY creation_date LIMIT $page, 3 ");
+        $statement = $this->executeQuery("SELECT * FROM articles  ORDER BY creation_date DESC LIMIT $page, 3 ");
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -18,7 +18,7 @@ class Articles_model extends DB{
             $page = $page - 1;
             $page = $page*3;
             //var_dump($page);
-            $statement = $this->executeQuery("SELECT * FROM articles WHERE category='$category' ORDER BY creation_date LIMIT $page, 3 ");
+            $statement = $this->executeQuery("SELECT * FROM articles WHERE category='$category' ORDER BY creation_date DESC LIMIT $page, 3 ");
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
@@ -48,11 +48,15 @@ class Articles_model extends DB{
         return $result;
     }
 
-    function addArticle ($category,$title,$body,$img) {
-        $this->executeQuery("INSERT INTO articles (category,title, body, img)
-        VALUES ('".$category."','".$title."','".$body."','".$img."');");
+    function addArticle ($category,$title,$body,$author) {
+        $this->executeQuery("INSERT INTO articles (category,title, body, author)
+        VALUES ('".$category."','".$title."','".$body."','".$author."');");
+        $last_id = $this->database->lastInsertId();
+        return $last_id;
     }
-
+    function insertPicture($value, $id){
+        $this->executeQuery("UPDATE articles SET img = '$value' WHERE id = '$id' ");
+    }
     function updateArticle() {
 
     }

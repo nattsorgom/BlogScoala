@@ -27,15 +27,16 @@ $( document ).ready(function() {
                         $articole.html('');
                         commentFormHtml = '<div class="comment-form">' +
                             '<p>Email   :</p><input type="text" name="email"><br>' +
-                            '<p>Comment :</p><textarea name="body"></textarea><br>' +
-                            '<p class="add-comment" >Add a Comment</p>'+
+                            '<p>Comment :</p><textarea rows="5" name="body"></textarea><br>' +
+                            '<p id="add-comment" class="my-buttons" >Add a Comment</p>'+
                             '</div>';
                         $articole.append('<div class="one-article"><h2>' +
-                            oneArticle[0].title + '</h2><br><img src = "' +
-                            oneArticle[0].img + '"><p>' +
+                            oneArticle[0].title + '</h2><br>'+
+                            '<img id="article-img"'+
+                            'src="public/img/' + oneArticle[0].category + '/' + oneArticle[0].id + '/' + oneArticle[0].img + '"/><hr><p>' +
                             oneArticle[0].body + '</p><br>' +
-                            oneArticle[0].creation_date + ' in     <button>' +
-                            oneArticle[0].category + '</button></div><hr>' +
+                            oneArticle[0].creation_date + ' in     <p>' +
+                            oneArticle[0].category + '</p><p><i> author :</i>' + oneArticle[0].author + '</p></div><hr>' +
                             commentFormHtml +
                             '<div class="comments">'+
                             '<div>');
@@ -43,7 +44,7 @@ $( document ).ready(function() {
                         getComments(oneArticle[0].id);
                         $('.articole').slideDown(250,function(){
                             function addComment() {
-                            $('.add-comment').click(function () {
+                            $('#add-comment').click(function () {
                                 console.log($('input[name=email]').val());
                                     $.ajax({
                                         url: "http://localhost/blog_scoala/Articles/addComment",
@@ -58,8 +59,8 @@ $( document ).ready(function() {
                                             var $commentForm = $('.comment-form');
                                             $commentForm.html('');
                                             $commentForm.html('<p>Comment Added Succesfully !</p>' +
-                                            '<p class="add-another-comment">Add Another Comment</p>');
-                                            $('.add-another-comment').click(function () {
+                                            '<p id="add-another-comment" class="my-buttons">Add Another Comment</p>');
+                                            $('#add-another-comment').click(function () {
                                             $commentForm.html('');
                                             $commentForm.html(commentFormHtml);
                                             addComment();
@@ -105,11 +106,12 @@ $( document ).ready(function() {
                 $.each(current_page, function (i, articol) {
                     //console.log(articol.title);
                     $articole.append(
-                        '<div class="one-of-three-articles" data-articleid="'+articol.id+'">' +
+                        '<div class="one-of-three-articles" data-articleid="' + articol.id + '">' +
                         '<h2 class="text-link"> Title : ' + articol.title +
-                        '</h2><br><img src="'+ articol.img +'"><br>' +
+                        '</h2><br><img src="public/img/' + articol.category + '/' + articol.id + '/' + articol.img + '"/><br>' +
                         '<p class="text-link">' +
-                        articol.body.substring(125,0) + ' ... </p></div>'
+                        articol.body.substring(125,0) + ' ... </p>'+
+                        '<p><i>author :</i> '+ articol.author +' </p></div> '
                     );
                     console.log(articol.id);
                 });

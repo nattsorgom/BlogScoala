@@ -57,7 +57,18 @@ class Articles
     function addComment() {
         $this->all_comments = new Comments_model();
         header('Content-Type: application/json');
-        $comment = $this->all_comments->addComment($_POST);
+        $article_id = $_POST['article_id'];
+        $body = $this->test_input($_POST['body']);
+        if ($_SESSION['logat']) {
+            $email = $_SESSION['user'];
+        } else {
+            if (!isset($_POST['email'])||empty($_POST['email'])) {
+                $email = 'Anonymous';
+            } else {
+                $email = $this->test_input($_POST['email']);
+            }
+        }
+        $comment = $this->all_comments->addComment($article_id, $email, $body);
         echo json_encode(array("id"=>$comment));
     }
 
@@ -91,16 +102,18 @@ class Articles
 
     }
 
-    function addArticle($category, $title, $body, $author, $img)
+    function addArticle()
     {
         if (!$_SESSION['logat']) {
-            header('Location:/blog_scoala/Login/index');
+            header('Location:/blog_scoala/Admin/index');
         }
-        echo $_POST['title'];
-        $this->all_articles->addArticle();
-
-
+        header('Content-Type: application/json');
+        $title = $this->test_input($_POST['title']);
+        $body = $this->test_input($_POST['body']);
+        $art = $this->all_articles->addArticle($_POST['category'],$title , $body, $_SESSION['user']);
+        echo json_encode(array("id"=>$art));
     }
+
 
     function test_input($data)
     {
